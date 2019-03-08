@@ -5,7 +5,9 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="破解android的APK包获取图片资源和源码步骤, 个人博客">
-    <meta name="description" content="破解android的APK包获取图片资源和源码步骤 | 个人博客">
+    <meta name="description" content="Android系统中app的安装包是一个以.apk为后缀的文件,在此记录一下windows如何使用apktool将这个 apk反编译成源文件，其中包括图片和java源码等资源，但java源码有可能是混淆过之后的代码
+step one
+打开a">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -356,7 +358,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p><strong>Android</strong>系统中app的安装包是一个以<strong>.apk</strong>为后缀的文件,在此记录一下windows如何使用<a href="https://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="noopener">apktool</a>将这个 <strong>apk</strong>反编译成源文件，其中包括图片和java源码等资源，但java源码有可能是混淆过之后的代码</p>
+<h2 id="step-one"><a href="#step-one" class="headerlink" title="step one"></a>step one</h2><ul>
+<li>打开<a href="https://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="noopener">apktool</a>官网，鼠标放到<strong>wrapper script</strong>上右键，选择<strong>链接另存为</strong>将其保存到本地，以 <strong>apktool.bat</strong> 命名</li>
+<li>本地新建一个文件夹 <strong>apktool</strong>,把刚刚下载的文件放进去<h2 id="step-two"><a href="#step-two" class="headerlink" title="step two"></a>step two</h2></li>
+<li>下载<strong>apktool.jar</strong>文件(还是刚刚那个网址)，点击(左键) <strong>find newest here</strong>,选择一个顺眼的版本下载，重命名为 <strong>apktool.jar</strong>后放到刚刚建的apktool文件夹中</li>
+<li>配置环境变量，将刚刚新建的文件夹 <strong>apktool</strong>的路径加到 <strong>path</strong>中</li>
+<li>将需要反编译的<strong>.apk</strong>包拷贝到 <strong>apktool</strong>这个文件夹下,如下图：<br><img src="\images\android\2019-03-08\2019-03-08_203716.jpg" alt="avatar"><h2 id="step-threee"><a href="#step-threee" class="headerlink" title="step threee"></a>step threee</h2></li>
+<li>打开命令行，进到刚刚新建的文件夹 <strong>apktool</strong>中，如：<pre><code>D：\android\IDE\apktool
+</code></pre>中执行命令<pre><code>apktool d app-release-vhuatu.apk
+</code></pre>，执行完之后你会在apktool文件夹下发现多出来一个文件夹，如果没有就注意看命令行中的日志，根据路径去找，第一次我的是在C盘中找到的。<br>如下图：<br><img src="\images\android\2019-03-08\2.jpg" alt="avatar"></li>
+<li>打开新生成的那个文件，资源文件都在里面，如下图：<br><img src="\images\android\2019-03-08\3.jpg" alt="avatar"><h2 id="step-four-反编译生成java文件"><a href="#step-four-反编译生成java文件" class="headerlink" title="step four (反编译生成java文件)"></a>step four (反编译生成java文件)</h2></li>
+<li>将apk包后缀改成<strong>zip</strong>,解压,里面有个<strong>classes.dex</strong>文件，这就是android后端java源码</li>
+<li>下载一个反编译jar包的工具<a href="https://bitbucket.org/pxb1988/dex2jar/downloads/" target="_blank" rel="noopener">dex2jar</a>,下载那个zip包，放到刚刚新建的文件夹apktool中，解压</li>
+<li>将上面提到的那个dex文件复制放到<strong>dex2jar-2.0</strong>目录下，命令行进到<strong>dex2jar-2.0</strong>这个目录，执行命令 <strong>d2j-dex2jar.bat classes.dex</strong></li>
+<li><strong>dex2jar-2.0</strong>下多了一个jar文件，借助一个工具打开这个jar文件即可，<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fjava-decompiler%2Fjd-gui%2Freleases%2Fdownload%2Fv1.4.0%2Fjd-gui-windows-1.4.0.zip" target="_blank" rel="noopener">jd-gui</a>,下载解压，用里面那个有咖啡图标软件打开 <strong>classes-dex2jar.jar</strong> 文件即可</li>
+<li>里面有可能是混淆后的代码，就是方法名、变量名都被abcdef这些字母替代了，到此表示很遗憾，但至少知道了怎么反编译jar文件，java中很多包就能通过刚刚那个<strong>jd-gui</strong>工具来反编译了，但那个图片资源还是很有用的，有些参考价值比较大。</li>
+</ul>
+
             </div>
             <hr>
 
@@ -496,7 +515,7 @@
                     </span>
                     <a href="http://www.zhsili.top" class="b-link-green">个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/08/po-jie-android-de-apk-bao-huo-qu-tu-pian-zi-yuan-he-yuan-ma-bu-zou/" class="b-link-green">破解android的APK包获取图片资源和源码步骤</a>
+                    <a href="/2019/03/08/jiang-android-xi-tong-zhong-app-de-an-zhuang-bao-apk-wen-jian-fan-bian-yi-de-dao-yuan-ma/" class="b-link-green">破解android的APK包获取图片资源和源码步骤</a>
                 </p>
             </div>
         </div>
@@ -544,7 +563,7 @@
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2019/03/08/po-jie-android-de-apk-bao-huo-qu-tu-pian-zi-yuan-he-yuan-ma-bu-zou/">
+                <a href="/2019/03/08/jiang-android-xi-tong-zhong-app-de-an-zhuang-bao-apk-wen-jian-fan-bian-yi-de-dao-yuan-ma/">
                     <div class="card-image">
                         
                         
@@ -554,7 +573,9 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"></div>
+                    <div class="summary">Android系统中app的安装包是一个以.apk为后缀的文件,在此记录一下windows如何使用apktool将这个 apk反编译成源文件，其中包括图片和java源码等资源，但java源码有可能是混淆过之后的代码
+step one
+打开a</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-08
@@ -602,9 +623,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="hexo搭建的博客添加一篇新文章">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">hexo搭建的博客添加一篇新文章</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -615,11 +636,31 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            Zhou sili
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/博客/" class="post-category" target="_blank">
+                                    博客
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/增加文章/" target="_blank">
+                        <span class="chip bg-color">增加文章</span>
+                    </a>
+                    
+                    <a href="/tags/hexo/" target="_blank">
+                        <span class="chip bg-color">hexo</span>
+                    </a>
+                    
+                    <a href="/tags/博客/" target="_blank">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
                 </div>
                 
             </div>
